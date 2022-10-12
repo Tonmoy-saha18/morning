@@ -1,10 +1,10 @@
+import secrets
 from datetime import date, datetime
 import math
 from wechatpy import WeChatClient
-from wechatpy.client.api import WeChatMessage, WeChatTemplate
+from wechatpy.client.api import WeChatMessage
 import requests
 import os
-import random
 
 today = datetime.now()
 start_date = os.environ['START_DATE']
@@ -41,7 +41,7 @@ def get_words():
   return words.json()['data']['text']
 
 def get_random_color():
-  return "#%06x" % random.randint(0, 0xFFFFFF)
+  return "#%06x" % secrets.choice(range(0, 16777216))
 
 
 client = WeChatClient(app_id, app_secret)
